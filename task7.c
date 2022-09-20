@@ -1,22 +1,31 @@
 #include <stdio.h>
 #include <math.h>
 
-int main() {
-	int n;
+int main()
+{
+	int lastNum = 2;
 
-	printf("THe program finds simple numbers < n\n");
-	printf("Enrer n = ");
-	scanf_s("%d", &n);
+	printf("The program finds simple numbers < n\n");
 
-	int simpleNums[100000] = {1,2};
-	int curIndex = 1;
-	for(int num = 3; num <= n; ++num){
+	while (lastNum <= 2)
+	{
+		printf("N should b >= 2. Enter n = ");
+		scanf_s("%d", &lastNum);
+	}
+
+	int simpleNums[100000] = {2};
+	int curIndex = 0;
+	for(int num = 3; num < lastNum; num += 2)
+	{
 		int isSimple = 1;
-		for(int dIndex = 1; dIndex < curIndex; ++dIndex){
-			if((int)sqrt(num) < simpleNums[dIndex]){
+		for(int dIndex = 1; dIndex < curIndex; ++dIndex)
+		{
+			if((int)sqrt(num) < simpleNums[dIndex])
+			{
 				break;
 			}
-			if(num % simpleNums[dIndex] == 0){
+			if(num % simpleNums[dIndex] == 0)
+			{
 				isSimple = 0;
 				break;
 			}
@@ -26,15 +35,10 @@ int main() {
 			simpleNums[curIndex] = num;
 		}
 	}
-	if (n < 3){
-		for(int i = 0; i < n; ++i){
-			printf("%d ", simpleNums[i]);
-		}
-	}
-	else{
-		for(int i = 0; i <= curIndex; ++i){
-			printf("%d ", simpleNums[i]);
-		}
+
+	for(int i = 0; i <= curIndex; ++i)
+	{
+		printf("%d ", simpleNums[i]);
 	}
 	return 0;
 }

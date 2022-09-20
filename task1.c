@@ -1,16 +1,19 @@
 #include <stdio.h>
 
-int main(){
+float f(float x)
+{
+	float sqX = x * x;
+	return sqX * (sqX + x) + sqX + x + 1;
+}
 
-	int x, answer;
-		
-	printf("The program findss answer for x^4 + x^3 + x^2 + x + 1\n");
+int main ()
+{
 
+	printf("This program finds answer for x^4 + x^3 + x^2 + x + 1\n");
+
+	float x = 0;
 	printf("Enter x = ");
-	scanf_s("%d", &x);
-	
-	int squerX = x*x;
-	answer = squerX * (squerX + x) + squerX + x + 1;
-	printf("Answer = %d", answer);	
+	scanf_s("%f", &x);
+	printf("x^4 + x^3 + x^2 + x = %f \n", f(x));
 	return 0;
 }
