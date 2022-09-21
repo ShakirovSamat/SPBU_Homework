@@ -1,65 +1,75 @@
 #include <stdio.h>
 #include <string.h>
 
-int main(){
-	char str[1000] = "";
+#define maxLn 1000
+int main()
+{
+	char str[maxLn] = "";
 
-	printf("Enter string = ");
+	printf("Max size of string is 1000 signs. Enter string = ");
 	scanf_s("%s",&str);
 
- 	char stuck[100] = {str[0]};
+ 	char stack[maxLn] = {};
 	int len = strlen(str);
-	int curPosition = 1;
+	int curPosition = 0;
 	int isCorrectStr = 1;
 
-	for(int i = 0; i < len;++i){
-		switch(str[i]){
+	for(int i = 0; i < len;++i)
+	{
+		switch(str[i])
+		{
 			case '(':
-				stuck[curPosition] = '(';
-				curPosition++;
-				break;
 			case '[':
-				stuck[curPosition] = '[';
-				curPosition++;
-				break;
 			case '{':
-				stuck[curPosition] = '{';
+				stack[curPosition] = str[i];
 				curPosition++;
 				break;
 			case ')':
-				if (stuck[curPosition - 1] == '('){
-					curPosition -= 2;
+				if (stack[curPosition - 1] == '(')
+				{
+					curPosition -= 1;
 				}
-				else{
+				else
+				{
 					isCorrectStr = 0;
 				}
 				break;
 			case ']':
-				if (stuck[curPosition - 1] == '['){
-					curPosition -= 2;
+				if (stack[curPosition - 1] == '[')
+				{
+					curPosition -= 1;
 				}
-				else{
+				else
+				{
 					isCorrectStr = 0;
 				}
 				break;
 			case '}':
-				if (stuck[curPosition - 1] == '{'){
-					curPosition -= 2;
+				if (stack[curPosition - 1] == '{')
+				{
+					curPosition -= 1;
 				}
-				else{
+				else
+				{
 					isCorrectStr = 0;
 				}
 				break;
 			default:
-				isCorrectStr = 0;
+				break;
 									
 		}
+		if (!isCorrectStr)
+		{
+			break;
+		}
 	}
-	if (isCorrectStr){
+	if (isCorrectStr && curPosition == 0)
+	{
 		printf("The string is correct");
 	}
-	else{
+	else
+	{
 		printf("The string is wrong");
 	}
-
+	return 0;
 }
